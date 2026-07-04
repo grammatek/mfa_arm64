@@ -1,0 +1,13 @@
+diff --git a/recipe/meta.yaml b/recipe/meta.yaml
+index 5e3277b..9b12431 100644
+--- a/recipe/meta.yaml
++++ b/recipe/meta.yaml
+@@ -6,7 +6,7 @@ package:
+   version: {{ version }}
+ 
+ source:
+-  url: http://206.196.111.47/twiki/pub/GRM/BaumWelchDownload/{{ name }}-{{ version }}.tar.gz
++  url: file:///build/sources/{{ name }}-{{ version }}.tar.gz
+   sha256: dce976c0a7952ebdeb700e7c0ac1dc199c28b097825afc296cf713d1a0337a51
+   patches:
+     - patches/0001-Add-CMake-files.patch  # [win]

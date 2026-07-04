@@ -1,0 +1,24 @@
+This repository's own contents - the Dockerfile, the patches under patches/ and kalpy_090/, and the documentation - are licensed under the MIT License. See LICENSE.
+
+It builds and packages third-party software, each under its own license.
+
+fetch-sources.sh downloads two unmodified upstream OpenGrm releases:
+
+- OpenGrm BaumWelch - Apache-2.0 - https://www.opengrm.org/
+- OpenGrm NGram - Apache-2.0 - https://www.opengrm.org/
+
+kalpy_090/fix-lattice-return.patch is a one-line backport of a change from kalpy-kaldi 0.10.1 to 0.9.0. kalpy is licensed under the MIT License. https://github.com/mmcauliffe/kalpy
+
+The patches under patches/ modify conda-forge feedstock recipes, which are BSD-3-Clause.
+
+The resulting Docker image additionally installs, from conda-forge and Ubuntu:
+
+- Montreal Forced Aligner - MIT - https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner
+- Kaldi - Apache-2.0
+- OpenFst - Apache-2.0
+- Pynini - Apache-2.0
+- SoX - GPL-2.0 and LGPL-2.1
+
+Each retains its own license within the image.
+
+This is an unofficial build. It is not affiliated with or endorsed by the Montreal Forced Aligner project or its authors.

@@ -1,0 +1,13 @@
+diff --git a/recipe/meta.yaml b/recipe/meta.yaml
+index ceb6922..5a17e3b 100644
+--- a/recipe/meta.yaml
++++ b/recipe/meta.yaml
+@@ -6,7 +6,7 @@ package:
+   version: {{ version }}
+ 
+ source:
+-  url: http://206.196.111.47/twiki/pub/GRM/NGramDownload/{{ name }}-{{ version }}.tar.gz
++  url: file:///build/sources/{{ name }}-{{ version }}.tar.gz
+   sha256: 0426b808119ad4b7a7095acd538afe6cfc69bd3227842104f086912e8dced8d4
+   patches:
+     - patches/0001-Add-CMake-files.patch  # [win]

@@ -1,0 +1,16 @@
+Backport of the 0.10.1 fix: gmm_latgen_faster's determinize branch returned a
+CompactLattice (clat) while the other branches returned a Lattice (lat), so the
+lambda deduced inconsistent py::make_tuple return types and failed to compile on
+the aarch64 gcc. Convert clat->lat first, matching upstream 0.10.1.
+--- a/extensions/decoder/decoder.cpp
++++ b/extensions/decoder/decoder.cpp
+@@ -1899,7 +1899,8 @@
+     // We'll write the lattice without acoustic scaling.
+     if (acoustic_scale != 0.0)
+       fst::ScaleLattice(fst::AcousticLatticeScale(1.0 / acoustic_scale), &clat);
+-      return py::make_tuple(true, alignment, words, clat);
++      ConvertLattice(clat,&lat);
++      return py::make_tuple(true, alignment, words, lat);
+   } else {
+     // We'll write the lattice without acoustic scaling.
+     if (acoustic_scale != 0.0)
