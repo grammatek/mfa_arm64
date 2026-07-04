@@ -1,7 +1,7 @@
 # Montreal Forced Aligner for linux-aarch64
 
-[![Docker Hub](https://img.shields.io/docker/v/lumpidu/mfa-aarch64?sort=semver&label=Docker%20Hub&logo=docker&color=2496ED)](https://hub.docker.com/r/lumpidu/mfa-aarch64)
-[![Image size](https://img.shields.io/docker/image-size/lumpidu/mfa-aarch64/latest?label=image%20size)](https://hub.docker.com/r/lumpidu/mfa-aarch64/tags)
+[![Docker Hub](https://img.shields.io/docker/v/grammatek/mfa_arm64?sort=semver&arch=arm64&label=Docker%20Hub&logo=docker&color=2496ED)](https://hub.docker.com/r/grammatek/mfa_arm64)
+[![Image size](https://img.shields.io/docker/image-size/grammatek/mfa_arm64/latest?arch=arm64&label=image%20size)](https://hub.docker.com/r/grammatek/mfa_arm64/tags)
 
 A self-contained Docker build of [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/) 3.3.9 for **linux-aarch64** such as the NVIDIA DGX Spark, Apple Silicon, Ampere and AWS Graviton. conda-forge publishes MFA only where all of its native dependencies have aarch64 builds, and four of them do not, so `mamba install montreal-forced-aligner` fails on ARM Linux out of the box. This image supplies those four itself - three built from source into a local channel, sox from apt - and resolves the rest from conda-forge normally.
 
@@ -12,7 +12,7 @@ A self-contained Docker build of [Montreal Forced Aligner](https://montreal-forc
 Pull the prebuilt image from Docker Hub. It is an arm64 image; on a non-arm host add `--platform linux/arm64` to run it under QEMU.
 
 ```bash
-docker pull lumpidu/mfa-aarch64
+docker pull grammatek/mfa_arm64
 ```
 
 Or build it yourself:
@@ -22,9 +22,9 @@ Or build it yourself:
 ./fetch-sources.sh
 
 # 2a. Build natively on arm64:
-docker build -t lumpidu/mfa-aarch64 .
+docker build -t grammatek/mfa_arm64 .
 # 2b. or cross-build from an amd64 host under QEMU, which is slower; the kalpy compile alone takes about an hour.
-docker buildx build --platform linux/arm64 -t lumpidu/mfa-aarch64 --load .
+docker buildx build --platform linux/arm64 -t grammatek/mfa_arm64 --load .
 ```
 
 Align a corpus against a pronunciation dictionary and acoustic model. This assumes the current host directory holds:
@@ -39,7 +39,7 @@ Align a corpus against a pronunciation dictionary and acoustic model. This assum
 docker run --rm -v "$PWD:/data" \
   -e MFA_ROOT_DIR=/data/mfa_root -e HOME=/data \
   --user "$(id -u):$(id -g)" \
-  lumpidu/mfa-aarch64 \
+  grammatek/mfa_arm64 \
   align /data/corpus /data/corpus.dict /data/acoustic.zip /data/out \
   -j "$(nproc)" --clean --output_format json
 ```
