@@ -1,7 +1,7 @@
 # Montreal Forced Aligner for linux-aarch64
 
 [![Docker Hub](https://img.shields.io/docker/v/grammatek/mfa_arm64?sort=semver&arch=arm64&label=Docker%20Hub&logo=docker&color=2496ED)](https://hub.docker.com/r/grammatek/mfa_arm64)
-[![Image size](https://img.shields.io/docker/image-size/grammatek/mfa_arm64/latest?arch=arm64&label=image%20size)](https://hub.docker.com/r/grammatek/mfa_arm64/tags)
+[![Image size](https://img.shields.io/docker/image-size/grammatek/mfa_arm64/latest?label=image%20size)](https://hub.docker.com/r/grammatek/mfa_arm64/tags)
 
 A self-contained Docker build of [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/) 3.3.9 for **linux-aarch64** such as the NVIDIA DGX Spark, Apple Silicon, Ampere and AWS Graviton. conda-forge publishes MFA only where all of its native dependencies have aarch64 builds, and four of them do not, so `mamba install montreal-forced-aligner` fails on ARM Linux out of the box. This image supplies those four itself - three built from source into a local channel, sox from apt - and resolves the rest from conda-forge normally.
 
